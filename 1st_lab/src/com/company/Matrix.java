@@ -16,13 +16,6 @@ public class Matrix {
         data = new double[rows][cols];
     }
 
-    public Matrix(double[][] data) {
-        this.data = data.clone();
-        rows = this.data.length;
-        cols = this.data[0].length;
-    }
-
-
     //the transpose of the matrix
     public Matrix transpose() {
         Matrix result = new Matrix(cols, rows);
@@ -84,12 +77,21 @@ public class Matrix {
         return C;
     }
 
-    public boolean equal (Matrix B) {
-        Matrix A = this;
-        if (B.rows != A.rows || B.cols != A.cols) throw new RuntimeException("Illegal matrix dimensions.");
-        for (int row = 0; row < rows; row++)
-            for (int col = 0; col < cols; col++)
-                if (A.data[row][col] != B.data[row][col]) return false;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Matrix that = (Matrix) obj;
+        if (rows != that.rows || cols != that.cols) return false;
+
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if (data[i][j] != that.get_value(i, j)) return false;
+            }
+        }
+
         return true;
     }
 

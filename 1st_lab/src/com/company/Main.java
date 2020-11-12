@@ -5,8 +5,17 @@ import static java.lang.System.out;
 public class Main {
 
     public static void main(String[] args) {
-        double[][] arr = { { 1, 2, 3 }, { 4, 5, 6 }, { 9, 1, 3} };
-        Matrix A = new Matrix(arr);
+        Matrix A = new Matrix(3, 3);
+        A.set_value(1, 0, 0);
+        A.set_value(2, 0, 1);
+        A.set_value(3, 1, 0);
+        A.set_value(4, 1, 1);
+        A.set_value(5, 0, 2);
+        A.set_value(6, 1, 2);
+        A.set_value(7, 2, 2);
+        A.set_value(8, 2, 0);
+        A.set_value(9, 2, 1);
+
         out.println(A);
 
         Matrix B = A.transpose();
@@ -26,7 +35,7 @@ public class Main {
 
         out.println(D.determinant());
 
-        out.println(A.equal(B.transpose()));
+        out.println(A.equals(B));
 
     }
 }
