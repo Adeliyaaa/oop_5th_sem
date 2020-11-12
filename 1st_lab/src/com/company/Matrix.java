@@ -79,16 +79,18 @@ public class Matrix {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
         if (this.getClass() != obj.getClass()) return false;
 
-        Matrix that = (Matrix) obj;
-        if (rows != that.rows || cols != that.cols) return false;
+        Matrix other = (Matrix) obj;
+        if (rows != other.rows || cols != other.cols) return false;
 
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
-                if (data[i][j] != that.get_value(i, j)) return false;
+                if (data[i][j] != other.get_value(i, j)) return false;
             }
         }
 
