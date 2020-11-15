@@ -14,21 +14,6 @@ public class PhoneBook {
 
     }
 
-    public boolean found (String part){
-        List <Contact> found = new ArrayList<>();
-        found = findContact(part);
-        if (found.size() > 0)
-        {
-            System.out.println("The contacts you are searching for. ");
-            found.forEach(Contact -> System.out.println(Contact.getName() + ' ' + Contact.getSurname()));
-            return true;
-        }
-        else
-            System.out.println("The contact you are searching for does not exist");
-
-        return false;
-    }
-
     public List findContact (String part) {
         List <Contact> found = new ArrayList<>();
         for (Contact temp: ContactList){
@@ -92,14 +77,11 @@ public class PhoneBook {
     public void deleteNumber(String num){
         boolean wasdeleted = false;
         for (Contact temp : ContactList){
-            if (temp.deleteNumber(num) == true)
+            if (temp.deleteNumber(num))
                 wasdeleted = true;
         }
-        if (wasdeleted == false)
+        if (!wasdeleted)
             throw new IllegalArgumentException("Contact with this number does not exist");
-
-
-
     }
 
     public void showAll (){
