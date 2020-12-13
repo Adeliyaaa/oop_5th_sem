@@ -1,0 +1,35 @@
+[
+  {
+    "Shape Type": "Circles",
+    "Data": {
+      "radius": 5.0
+    }
+  },
+  {
+    "Shape Type": "Triangle",
+    "Data": {
+      "side_one": 3.0,
+      "side_two": 4.0,
+      "side_three": 5.0
+    }
+  },
+  {
+    "Shape Type": "Square",
+    "Data": {
+      "side": 6.0
+    }
+  },
+  {
+    "Shape Type": "Square",
+    "Data": {
+      "side": 4.0
+    }
+  },
+  {
+    "Shape Type": "Rect",
+    "Data": {
+      "width": 4.0,
+      "length": 8.0
+    }
+  }
+]
