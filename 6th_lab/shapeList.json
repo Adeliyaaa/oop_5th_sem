@@ -1,0 +1,26 @@
+[
+  {
+    "Shape Type": "shapesPackage.Circles",
+    "Data": {
+      "radius": 5.0
+    }
+  },
+  {
+    "Shape Type": "shapesPackage.Square",
+    "Data": {
+      "side": 4.0
+    }
+  },
+  {
+    "Shape Type": "shapesPackage.Circles",
+    "Data": {
+      "radius": 8.0
+    }
+  },
+  {
+    "Shape Type": "shapesPackage.Circles",
+    "Data": {
+      "radius": 5.0
+    }
+  }
+]
