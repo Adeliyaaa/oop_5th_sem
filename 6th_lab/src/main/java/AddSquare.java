@@ -14,6 +14,7 @@ public class AddSquare extends JDialog {
     public AddSquare(addedListener listener) {
         setModal(true);
         setContentPane(contentPane);
+        setSize(300, 200);
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();

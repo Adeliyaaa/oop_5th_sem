@@ -15,6 +15,7 @@ public class AddRect extends JDialog {
     public AddRect(addedListener listener) {
         setModal(true);
         setContentPane(contentPane);
+        setSize(330, 250);
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();

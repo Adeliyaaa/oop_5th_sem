@@ -26,10 +26,12 @@ public class ShapeMenu extends JDialog {
     private JButton moveDownButton;
     private JButton moveUpButton;
 
+
     public ShapeMenu() {
         setTitle("Menu of Shapes");
         setContentPane(contentPane);
         setModal(true);
+        setSize(700, 300);
         removeFigureButton.setBackground(Color.pink);
         getRootPane().setDefaultButton(buttonOK);
         shapeConverter converter = new shapeConverter("shapeList.json");
