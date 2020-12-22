@@ -90,6 +90,10 @@ public class Contact {
 
     }
 
+    @Override
+    public String toString() {
+        return name + ' ' + surname + ' ' + ListOfContactInfo.toString();
+    }
 }
 
 class info {
