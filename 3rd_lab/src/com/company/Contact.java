@@ -6,13 +6,20 @@ public class Contact {
 
     private String name;
     private String surname;
-    List <info> ListOfContactInfo = new ArrayList<>();
+    List <info> ListOfContactInfo;
 
     public Contact(String name, String surname, TypeOfContact type, String num) {
         this.name = name;
         this.surname = surname;
+        this.ListOfContactInfo = new ArrayList<>();
         info data = new info(type, num);
         ListOfContactInfo.add(data);
+    }
+
+    public Contact (String name, String surname, List <info> ListOfContactInfo){
+        this.name = name;
+        this.surname = surname;
+        this.ListOfContactInfo = new ArrayList<>(ListOfContactInfo);
     }
 
     public String getName() {
@@ -33,14 +40,16 @@ public class Contact {
         ListOfContactInfo.add(data);
     }
 
-    public boolean find (String part){
+    public Contact find (String part){
         List <info> found = new ArrayList<>();
         found = findNumber(part);
-        if (found.size() > 0) {
-            found.forEach(info -> System.out.println(info.getNumber() + ' ' + name + ' ' + surname));
-            return true;
+        Contact temporary;
+        if (found.size() > 0){
+            temporary = new Contact(name, surname, found);
+            return temporary;
         }
-        return false;
+        else
+            return null;
     }
 
     public info findOne (String number) {
@@ -50,7 +59,7 @@ public class Contact {
         return null;
     }
 
-    public List findNumber(String part){
+    public List <info> findNumber(String part){
         List <info> found = new ArrayList<>();
         for (info looking : ListOfContactInfo){
             if (looking.getNumber().contains(part)){
@@ -64,9 +73,9 @@ public class Contact {
         info deleting = findOne(num);
         if (deleting != null){
             ListOfContactInfo.remove(deleting);
-            System.out.println("The number " + num + " was deleted from the contact of " + name + ' ' + surname);
             return true;
         }
+
         else
             return false;
     }
@@ -75,52 +84,40 @@ public class Contact {
         info temp = findOne(oldNumber);
         if (temp != null){
             temp.setNumber(newNumber);
-            System.out.println("This number " + oldNumber + " was edited to " + newNumber);
         }
         else
             throw new IllegalArgumentException("Contact with this number does not exist");
 
     }
 
-    public void showEverything(){
-        System.out.println("Contact name: " + name + ' ' + surname);
-        showAllNumbers();
-    }
-
-    public void showAllNumbers(){
-        System.out.println("All the numbers of " + name + ' ' + surname);
-        for (info num : ListOfContactInfo){
-            System.out.println(num.toString());
-        }
-    }
 }
 
- class info {
-        private final TypeOfContact type;
-        private String number;
+class info {
+    private final TypeOfContact type;
+    private String number;
 
-        info(TypeOfContact type, String number) {
-            this.type = type;
-            if ((type == TypeOfContact.TG_ALIAS || type == TypeOfContact.VK_ALIAS) && number.charAt(0) != '@')
-                throw new IllegalArgumentException("An undeclared contact type was entered");
-            if (type == TypeOfContact.EMAIL && !number.contains("@"))
-                throw new IllegalArgumentException("An undeclared contact type was entered");
-            this.number = number;
-        }
+    info(TypeOfContact type, String number) {
+        this.type = type;
+        if ((type == TypeOfContact.TG_ALIAS || type == TypeOfContact.VK_ALIAS) && number.charAt(0) != '@')
+            throw new IllegalArgumentException("An undeclared contact type was entered");
+        if (type == TypeOfContact.EMAIL && !number.contains("@"))
+            throw new IllegalArgumentException("An undeclared contact type was entered");
+        this.number = number;
+    }
 
-        public String getNumber() {
-            return number;
-        }
+    public String getNumber() {
+        return number;
+    }
 
-        public void setNumber(String newNumber){
-            this.number = newNumber;
-        }
+    public void setNumber(String newNumber){
+        this.number = newNumber;
+    }
 
-     @Override
-     public String toString() {
-         return ("Contact info: " + number + " Type of contact info: " + type);
-     }
- }
+    @Override
+    public String toString() {
+        return ("Info: " + number + " Type: " + type);
+    }
+}
 
 
 enum TypeOfContact{
@@ -131,5 +128,3 @@ enum TypeOfContact{
     TG_ALIAS,
     VK_ALIAS
 }
-
-
