@@ -20,7 +20,6 @@ public class Main {
 
         try {
             Report readReport = converter.convertFromJson();
-            //readReport.showAll();
         } catch (IOException e) {
             e.printStackTrace();
         }
