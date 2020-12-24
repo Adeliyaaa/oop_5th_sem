@@ -84,14 +84,6 @@ public class Report {
 
 
     }
-    //delete this after
-    public void showAll(){
-    System.out.println("Group number is " + groupNumber + '\n');
-    System.out.println("Professor is " + professorName + ' ' + professorSurname + ' '
-            + professorLastname + '\n');
-        System.out.println("Students are:");
-                ListOfStudents.forEach(Student -> toString());
-
-    }
+   
 }
 
