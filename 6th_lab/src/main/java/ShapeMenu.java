@@ -25,6 +25,7 @@ public class ShapeMenu extends JDialog {
     private JButton addTriangleButton;
     private JButton moveDownButton;
     private JButton moveUpButton;
+    private JLabel pleaseSelectItemFirstLabel;
 
 
     public ShapeMenu() {
@@ -33,12 +34,15 @@ public class ShapeMenu extends JDialog {
         setModal(true);
         setSize(700, 300);
         removeFigureButton.setBackground(Color.pink);
+        pleaseSelectItemFirstLabel.setForeground(Color.RED);
+        pleaseSelectItemFirstLabel.setVisible(false);
         getRootPane().setDefaultButton(buttonOK);
         shapeConverter converter = new shapeConverter("shapeList.json");
         DefaultListModel<Shape> listModel = new DefaultListModel<>();
         try {
             listModel.addAll(converter.convertFromJson());
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(ShapeMenu.this, "Error! Couldn't upload the file");
             e.printStackTrace();
         }
         shapeList.setListData(listModel.toArray());
@@ -51,6 +55,7 @@ public class ShapeMenu extends JDialog {
                     newconverter.convertToJson(newShapesList);
                 } catch (IOException x) {
                     x.printStackTrace();
+                    JOptionPane.showMessageDialog(ShapeMenu.this, "Error! Couldn't save to the file");
                 }
             }
         });
@@ -123,27 +128,45 @@ public class ShapeMenu extends JDialog {
         removeFigureButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                listModel.remove(shapeList.getSelectedIndex());
+                if (shapeList.isSelectionEmpty())
+                    pleaseSelectItemFirstLabel.setVisible(true);
+                else {
+                    listModel.remove(shapeList.getSelectedIndex());
+                    pleaseSelectItemFirstLabel.setVisible(false);
+
+                }
             }
         });
         moveDownButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedIndex = shapeList.getSelectedIndex();
-                if (selectedIndex == listModel.getSize() - 1)
-                    throw new IllegalArgumentException();
-                Shape changethis = listModel.set(selectedIndex + 1, listModel.get(selectedIndex));
-                listModel.set(selectedIndex, changethis);
+                if (shapeList.isSelectionEmpty())
+                    pleaseSelectItemFirstLabel.setVisible(true);
+                else {
+                    int selectedIndex = shapeList.getSelectedIndex();
+                    if (selectedIndex == listModel.getSize() - 1)
+                        throw new IllegalArgumentException();
+                    Shape changethis = listModel.set(selectedIndex + 1, listModel.get(selectedIndex));
+                    listModel.set(selectedIndex, changethis);
+                    pleaseSelectItemFirstLabel.setVisible(false);
+                }
+
             }
         });
         moveUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedIndex = shapeList.getSelectedIndex();
-                if (selectedIndex < 1)
-                    throw new IllegalArgumentException();
-                Shape changethis = listModel.set(selectedIndex - 1, listModel.get(selectedIndex));
-                listModel.set(selectedIndex, changethis);
+                if (shapeList.isSelectionEmpty())
+                    pleaseSelectItemFirstLabel.setVisible(true);
+                else {
+                    int selectedIndex = shapeList.getSelectedIndex();
+                    if (selectedIndex < 1)
+                        throw new IllegalArgumentException();
+                    Shape changethis = listModel.set(selectedIndex - 1, listModel.get(selectedIndex));
+                    listModel.set(selectedIndex, changethis);
+                    pleaseSelectItemFirstLabel.setVisible(false);
+                }
+
             }
         });
     }
@@ -193,7 +216,7 @@ public class ShapeMenu extends JDialog {
         buttonCancel.setText("Exit");
         panel2.add(buttonCancel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(8, 3, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.add(panel3, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
         panel3.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 5, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -218,13 +241,16 @@ public class ShapeMenu extends JDialog {
         panel3.add(addTriangleButton, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        panel3.add(panel4, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel3.add(panel4, new com.intellij.uiDesigner.core.GridConstraints(7, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         moveDownButton = new JButton();
         moveDownButton.setText("Move Down");
         panel4.add(moveDownButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         moveUpButton = new JButton();
         moveUpButton.setText("Move Up");
         panel4.add(moveUpButton, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        pleaseSelectItemFirstLabel = new JLabel();
+        pleaseSelectItemFirstLabel.setText("Please select item first");
+        panel3.add(pleaseSelectItemFirstLabel, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
         contentPane.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
