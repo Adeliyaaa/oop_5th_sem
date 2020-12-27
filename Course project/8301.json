@@ -1,0 +1,27 @@
+{
+  "NAME": "Novakova",
+  "SURNAME": "Natalya",
+  "LASTNAME": "Evgenevna",
+  "SUBJECT": "Data Bases",
+  "GROUPNUMBER": 8301,
+  "STUDENTS": [
+    {
+      "surname": "Ponomareva",
+      "name": "Veronika",
+      "lastname": "Evgenevna",
+      "grade": 5
+    },
+    {
+      "surname": "Leyba",
+      "name": "Pavel",
+      "lastname": "Konstantinovich",
+      "grade": 5
+    },
+    {
+      "surname": "Anastasia",
+      "name": "Zdobnova",
+      "lastname": "Ivanovna",
+      "grade": 0
+    }
+  ]
+}

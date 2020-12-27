@@ -36,6 +36,13 @@ public class Report {
         return professorLastname;
     }
 
+    public String getFullname(){
+        if (professorName != null)
+          return professorName + ' ' + professorSurname + ' ' + professorLastname;
+        else
+            return "Name not set";
+    }
+
     public Report(int groupNumber, String subject) {
         this.groupNumber = groupNumber;
         Subject = subject;
@@ -82,8 +89,7 @@ public class Report {
             temp.addGrade(grade);
         }
 
-
     }
-   
+
 }
 

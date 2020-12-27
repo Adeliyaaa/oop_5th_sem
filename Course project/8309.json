@@ -1,0 +1,27 @@
+{
+  "NAME": "Goryachev",
+  "SURNAME": "Aleksander",
+  "LASTNAME": "Vadimovich",
+  "SUBJECT": "Operation Systems",
+  "GROUPNUMBER": 8309,
+  "STUDENTS": [
+    {
+      "surname": "Popov",
+      "name": "Dmitry",
+      "lastname": "Aleksandrovich",
+      "grade": 5
+    },
+    {
+      "surname": "Maslov",
+      "name": "Nikita",
+      "lastname": "Dmitrievich",
+      "grade": 5
+    },
+    {
+      "surname": "Khvatalov",
+      "name": "Dmitry",
+      "lastname": "Ivanovich",
+      "grade": 5
+    }
+  ]
+}

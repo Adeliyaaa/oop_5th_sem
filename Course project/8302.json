@@ -1,0 +1,33 @@
+{
+  "NAME": "Isakov",
+  "SURNAME": "Aleskander",
+  "LASTNAME": "Borisovich",
+  "SUBJECT": "Schematics",
+  "GROUPNUMBER": 8302,
+  "STUDENTS": [
+    {
+      "surname": "Ivanova",
+      "name": "Ekaterina",
+      "lastname": "Mikhailovna",
+      "grade": 5
+    },
+    {
+      "surname": "Morozova",
+      "name": "Ekaterina",
+      "lastname": "Andreevna",
+      "grade": 5
+    },
+    {
+      "surname": "Nikulin",
+      "name": "Leonid",
+      "lastname": "Alekseevich",
+      "grade": 5
+    },
+    {
+      "surname": "Zubareva",
+      "name": "Elena",
+      "lastname": "Aleksandrovna",
+      "grade": 5
+    }
+  ]
+}
