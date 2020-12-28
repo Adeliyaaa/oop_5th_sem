@@ -238,6 +238,7 @@
                 </constraints>
                 <properties>
                   <model>
+                    <item value="Add new..."/>
                     <item value="8301"/>
                     <item value="8302"/>
                     <item value="8309"/>
@@ -268,6 +269,7 @@
                 </constraints>
                 <properties>
                   <model>
+                    <item value="Add new..."/>
                     <item value="Data Bases"/>
                     <item value="Economics"/>
                     <item value="Operation Systems"/>
@@ -303,6 +305,7 @@
                 </constraints>
                 <properties>
                   <model>
+                    <item value="Add new..."/>
                     <item value="Novakova Natalya Evgenevna"/>
                     <item value="Karimov Artur Iskandarovich"/>
                     <item value="Krasilnikov Aleksander Vitalevich"/>

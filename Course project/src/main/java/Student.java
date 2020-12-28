@@ -1,8 +1,8 @@
-public class Student {
-    String surname;
-    String name;
-    String lastname;
-    int grade;
+ public class Student {
+    private String surname;
+     private String name;
+     private String lastname;
+     private int grade;
 
     public Student(String name, String surname, String lastname) {
         this.name = name;

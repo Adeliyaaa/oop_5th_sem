@@ -5,16 +5,17 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Report {
+
+    private List <Student> ListOfStudents = new ArrayList<>();
+    private int groupNumber;
+    private String Subject;
+    private String professorName;
+    private String professorSurname;
+    private String professorLastname;
+
     public List<Student> getStudents() {
         return ListOfStudents;
     }
-
-    List <Student> ListOfStudents = new ArrayList<>();
-    int groupNumber;
-    String Subject;
-    String professorName;
-    String professorSurname;
-    String professorLastname;
 
     public int getGroupNumber() {
         return groupNumber;
@@ -38,7 +39,7 @@ public class Report {
 
     public String getFullname(){
         if (professorName != null)
-          return professorName + ' ' + professorSurname + ' ' + professorLastname;
+            return professorName + ' ' + professorSurname + ' ' + professorLastname;
         else
             return "Name not set";
     }
@@ -78,7 +79,7 @@ public class Report {
 
     public Student findStudent (String name, String surname, String lastname){
         for (Student temp : ListOfStudents){
-            if (temp.name.equals(name) && temp.surname.equals(surname) && temp.lastname.equals(lastname))
+            if (temp.getName().equals(name) && temp.getSurname().equals(surname) && temp.getLastname().equals(lastname))
                 return temp;
         }
         return null;
